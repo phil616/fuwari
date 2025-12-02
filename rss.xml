@@ -89,6 +89,10 @@
 &lt;h3&gt;&lt;a href=&quot;https://run.claw.cloud/&quot;&gt;ClawCloud Run | Build, Deploy, Manage &amp;amp; Run in Cloud-Native Platform&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;之前被干爆过，目前亚太爆炸，每个月有 &lt;strong&gt;5 美元&lt;/strong&gt; 余额，直接跑Docker，按你分配的CPU核心数和内存来计费。不过 Hobby 计划还蛮便宜的，常用的话可以买
 &lt;img src=&quot;https://2x.nz/_astro/serverless-function-2.B3UO-Q3d_2hS6PT.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://render.com/&quot;&gt;Render&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://2x.nz/_astro/serverless-function-3.Bs28so9x_jxsjU.webp&quot; alt=&quot;&quot; /&gt;
+&lt;strong&gt;每月免费100G流量&lt;/strong&gt;，支持非常多的服务，如：静态网站、Web服务（Docker）、定时服务、PostgreSQL数据库、Key Vaule存储&lt;/p&gt;
+&lt;p&gt;唯一的缺点，性能不高&lt;/p&gt;
 &lt;h1&gt;结语&lt;/h1&gt;
 &lt;p&gt;Serverless不像传统的VPS，你并不完全拥有它，所以有些服务是不能跑的， &lt;strong&gt;特别是在免费层&lt;/strong&gt; ，如特别吃IO和网络的 &lt;strong&gt;AList&lt;/strong&gt; ，或是并发请求特别高以及商用服务。如果你用的舒心，请考虑购买各大平台的付费版套餐&lt;/p&gt;
 </content:encoded></item><item><title>出门在外，如何优雅、高效、流畅地远程自家电脑？</title><link>https://2x.nz/posts/remote/</link><guid isPermaLink="true">https://2x.nz/posts/remote/</guid><description>当今，我们出门在外，几乎哪哪都能摸到电脑，但是我们大部分的工作文件一般都在自家电脑，为了保持工作流的一致，我们自然就有了远控自家电脑的需求了</description><pubDate>Mon, 24 Nov 2025 18:04:57 GMT</pubDate><content:encoded>&lt;h1&gt;前言&lt;/h1&gt;
