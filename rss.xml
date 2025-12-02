@@ -93,6 +93,13 @@
 &lt;p&gt;&lt;img src=&quot;https://2x.nz/_astro/serverless-function-3.Bs28so9x_jxsjU.webp&quot; alt=&quot;&quot; /&gt;
 &lt;strong&gt;每月免费100G流量&lt;/strong&gt;，支持非常多的服务，如：静态网站、Web服务（Docker）、定时服务、PostgreSQL数据库、Key Vaule存储&lt;/p&gt;
 &lt;p&gt;唯一的缺点，性能不高&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://zeabur.com/zh-CN/&quot;&gt;Zeabur&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://2x.nz/_astro/serverless-function-4.hmvrzZtR_jU5Fm.webp&quot; alt=&quot;&quot; /&gt;
+&lt;strong&gt;每月免费5刀额度&lt;/strong&gt; ，免费计划有两个地域可选
+&lt;img src=&quot;https://2x.nz/_astro/serverless-function-5.DIvgyxtf_2qnlpb.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;最重磅的在于你可以将自己的VPS托管给Zeabur，它会在你的服务器上安装k3s等服务，之后你就可以直接在Zeabur的仪表盘上进行运维了&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最小服务器要求：2GB 内存，1 核 CPU。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://2x.nz/_astro/serverless-function-6.DxOZL36X_2d0DOo.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;h1&gt;结语&lt;/h1&gt;
 &lt;p&gt;Serverless不像传统的VPS，你并不完全拥有它，所以有些服务是不能跑的， &lt;strong&gt;特别是在免费层&lt;/strong&gt; ，如特别吃IO和网络的 &lt;strong&gt;AList&lt;/strong&gt; ，或是并发请求特别高以及商用服务。如果你用的舒心，请考虑购买各大平台的付费版套餐&lt;/p&gt;
 </content:encoded></item><item><title>出门在外，如何优雅、高效、流畅地远程自家电脑？</title><link>https://2x.nz/posts/remote/</link><guid isPermaLink="true">https://2x.nz/posts/remote/</guid><description>当今，我们出门在外，几乎哪哪都能摸到电脑，但是我们大部分的工作文件一般都在自家电脑，为了保持工作流的一致，我们自然就有了远控自家电脑的需求了</description><pubDate>Mon, 24 Nov 2025 18:04:57 GMT</pubDate><content:encoded>&lt;h1&gt;前言&lt;/h1&gt;
