@@ -29,7 +29,7 @@
 &lt;p&gt;接下来我们需要在你的终端安装一个图形化管理PostgreSQL的软件： &lt;a href=&quot;https://www.pgadmin.org/&quot;&gt;pgAdmin - PostgreSQL Tools&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;然后连上数据库，你将可以看到这些表
 &lt;img src=&quot;https://2x.nz/_astro/umami-migration-4.Bf_6rmGu_ZvokVq.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;接下来我们查看 &lt;code&gt;website&lt;/code&gt; 这张表，将 &lt;code&gt;website_event.csb&lt;/code&gt; 打开，查看旧的 &lt;code&gt;website_id&lt;/code&gt; 将新的ID改为旧的，这样才能数据匹配
+&lt;p&gt;接下来我们查看 &lt;code&gt;website&lt;/code&gt; 这张表，将 &lt;code&gt;website_event.csv&lt;/code&gt; 打开，查看旧的 &lt;code&gt;website_id&lt;/code&gt; 将新的ID改为旧的，这样才能数据匹配
 &lt;img src=&quot;https://2x.nz/_astro/umami-migration-5.BwVUMKHi_Z11A0sU.webp&quot; alt=&quot;&quot; /&gt;
 &lt;img src=&quot;https://2x.nz/_astro/umami-migration-6.BIWQqR3J_2uBfYL.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;接下来，我们正式开始数据导入，由于导入后的数据有两个 &lt;code&gt;session_id&lt;/code&gt; 字段，而在Umami自我管理的过程中这个 &lt;code&gt;session_id&lt;/code&gt; 字段是 &lt;strong&gt;唯一约束的&lt;/strong&gt; ，我们需要先解除这个限制，在正式上线前还要再加回这个限制（后面会说）&lt;/p&gt;
