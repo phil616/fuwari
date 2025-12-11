@@ -13,6 +13,31 @@
 &lt;p&gt;粉丝自建&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;https://t.me/blog2x&quot;&gt;Telegram: View @blog2x&lt;/a&gt;&lt;/p&gt;
+</content:encoded></item><item><title>想要一个匿名文件上载器？一行命令装好！</title><link>https://acofork.com/posts/py-uploadserver/</link><guid isPermaLink="true">https://acofork.com/posts/py-uploadserver/</guid><description>有时候我们可能出门在外想要带文件回家，但是U盘插来插去并不优雅，那么，我们可以尝试在自家电脑启动一个匿名文件上载器，然后将其暴露到公网！</description><pubDate>Thu, 11 Dec 2025 09:08:55 GMT</pubDate><content:encoded>&lt;h1&gt;安装&lt;/h1&gt;
+&lt;p&gt;确保你安装了 &lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;安装 &lt;strong&gt;uploadserver&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pip install --user uploadserver
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来，创建并进入一个新文件夹，作为 &lt;strong&gt;上传目录&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mkdir upload
+cd upload
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;运行，并监听 &lt;strong&gt;IPv4&lt;/strong&gt; 的 &lt;strong&gt;8000端口&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python -m uploadserver 8000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;又或者，监听 &lt;strong&gt;IPv6&lt;/strong&gt; 的 &lt;strong&gt;8000端口&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python -m uploadserver --bind :: 8000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来，你就可以在内网环境使用这个 &lt;strong&gt;文件上载器&lt;/strong&gt; 了
+&lt;img src=&quot;https://acofork.com/_astro/py-uploadserver.Dw28SIG5_Z1WSXXv.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;再然后，我们就可以将其打到公网了&lt;/p&gt;
+&lt;h1&gt;打到公网&lt;/h1&gt;
+&lt;h3&gt;方案一：使用EdgeOne进行IPv6回源&lt;/h3&gt;
+&lt;p&gt;将你的IPv6做 &lt;strong&gt;DDNS&lt;/strong&gt; ，然后使用EdgeOne回源
+&lt;img src=&quot;https://acofork.com/_astro/py-uploadserver-1.BRWxfuTL_ZDImn4.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;方案二：STUN（仅NAT1可用）&lt;/h3&gt;
+&lt;p&gt;当你的家庭网络为 &lt;strong&gt;NAT1&lt;/strong&gt; ，则可以使用类似这样的软件将你的 &lt;strong&gt;内网端口&lt;/strong&gt; 直接打到 &lt;strong&gt;公网端口&lt;/strong&gt; （貌似该程序对TCP分片敏感，会导致RST） &lt;a href=&quot;https://github.com/MikeWang000000/Natter&quot;&gt;MikeWang000000/Natter: Expose your TCP/UDP port behind full-cone NAT to the Internet.&lt;/a&gt;
+&lt;img src=&quot;https://acofork.com/_astro/py-uploadserver-2.DRE3TbK0_1W9E3g.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </content:encoded></item><item><title>Umami Cloud迁移到本地踩坑记录</title><link>https://acofork.com/posts/umami-migration/</link><guid isPermaLink="true">https://acofork.com/posts/umami-migration/</guid><description>早期的我很有先见之明，在使用Umami的时候是自建的，但是不久后因为想要全上云，又用回了Umami Cloud，但是现在访问记录激增，我又不得不迁移到本地...</description><pubDate>Fri, 05 Dec 2025 10:13:34 GMT</pubDate><content:encoded>&lt;h1&gt;正式开始&lt;/h1&gt;
 &lt;p&gt;首先，我们想要迁移，首先肯定是要拿到原来的Umami Cloud存放的数据&lt;/p&gt;
 &lt;p&gt;在 &lt;a href=&quot;https://cloud.umami.is/settings/data&quot;&gt;Umami Cloud Data | Settings&lt;/a&gt; 中，我们可以选择，导出数据（Export）
