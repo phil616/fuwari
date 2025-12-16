@@ -13,6 +13,56 @@
 &lt;p&gt;粉丝自建&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;https://t.me/blog2x&quot;&gt;Telegram: View @blog2x&lt;/a&gt;&lt;/p&gt;
+</content:encoded></item><item><title>本站遭受了建站以来规模最大的一次DDoS攻击，总流量6.65TB，峰值瞬发1.95GB/s</title><link>https://2x.nz/posts/ddos-6t/</link><guid isPermaLink="true">https://2x.nz/posts/ddos-6t/</guid><description>不是哥们，静态也打？</description><pubDate>Tue, 16 Dec 2025 08:28:59 GMT</pubDate><content:encoded>&lt;h1&gt;引言&lt;/h1&gt;
+&lt;p&gt;本站建站初使用 &lt;strong&gt;静态&lt;/strong&gt; 架构就是防止别有用心之人进行DDoS&lt;/p&gt;
+&lt;p&gt;你想啊，一个静态网站，所有攻击流量都是打在 &lt;strong&gt;CDN的边缘节点&lt;/strong&gt; 上，也就是等于攻打 &lt;strong&gt;整个CDN厂商&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一是很难打死，二是没必要，毕竟静态网站的背后没有源站，也不涉及利益，纯粹是白打&lt;/p&gt;
+&lt;p&gt;但在昨天，就有位神人试图攻打 &lt;strong&gt;EdgeOne/ESA&lt;/strong&gt; 并且还真给他打死了，待我娓娓道来&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;如果你就是那位神人，请联系我，我给您颁个奖&lt;/em&gt;&lt;/p&gt;
+&lt;h1&gt;初见端倪&lt;/h1&gt;
+&lt;p&gt;于 &lt;strong&gt;2025年12月16号 11:13&lt;/strong&gt;，我在和我的朋友测试项目的时候，有一个知识点他忘记了，我提议他前往我的博客查看，却被告知博客访问报 &lt;strong&gt;570&lt;/strong&gt; 状态码&lt;/p&gt;
+&lt;p&gt;我立即使用 https://itdog.cn 测试了我的博客网站 https://acofork.com 发现大部分节点都为 &lt;strong&gt;570&lt;/strong&gt; 状态码
+&lt;img src=&quot;https://2x.nz/_astro/4f3b8517527460574d03479cc64655be.DOI8pAZP_d2dmP.webp&quot; alt=&quot;&quot; /&gt;
+因为当时我的网站部署在 &lt;strong&gt;EdgeOne&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;随后，我向腾讯客服求证，了解到该状态码是一个 &lt;strong&gt;单节点限频访问&lt;/strong&gt; 的状态码
+&lt;img src=&quot;https://2x.nz/_astro/5082a73ffa31ee435c9c7894263ae4cd.B_hiNgCA_Zva8ED.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;我的朋友甚至还在调侃说： &lt;strong&gt;你网站🔥了&lt;/strong&gt;
+&lt;img src=&quot;https://2x.nz/_astro/ddos-6t-1.wRwoGQYM_17Sf2c.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;但是事情貌似还有一些诡异，为什么海外都是 &lt;strong&gt;200 OK&lt;/strong&gt; ？&lt;/p&gt;
+&lt;p&gt;我开始怀疑被打了
+&lt;img src=&quot;https://2x.nz/_astro/ddos-6t-2.CplrSdiw_1KVUI8.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;可能玩静态久了，没有第一时间上到 &lt;strong&gt;EdgeOne&lt;/strong&gt; 查看请求数和流量，想着都是静态，谁没事打呢&lt;/p&gt;
+&lt;p&gt;然后我就回家，暂时切了一下逻辑&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;之前： &lt;strong&gt;EdgeOne Pages&lt;/strong&gt; 直接提供服务，但是570&lt;/li&gt;
+&lt;li&gt;现在： &lt;strong&gt;EdgeOne CDN&lt;/strong&gt; 回源 &lt;strong&gt;Cloudflare Pages&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;切完后逐步好转，虽然速度有些慢，然后我就睡觉了&lt;/p&gt;
+&lt;h1&gt;茅塞顿开&lt;/h1&gt;
+&lt;p&gt;睡醒后我越想越奇怪，于是就登上了 &lt;strong&gt;EdgeOne Pages&lt;/strong&gt; 控制台，然后一看，我嘞个大雷
+&lt;img src=&quot;https://2x.nz/_astro/2f4df8e383a1b41625ad02eb70375465.DMF2bZXr_Z1B4sDb.webp&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://2x.nz/_astro/50480865cd7f11d7cc4b495bcbc48038.q55tWphh_Z1ctQjG.webp&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://2x.nz/_astro/30bb8ddb905b6de8181d60ddf1b69dbe.BbLtod7l_1OyFvo.webp&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://2x.nz/_astro/01f15a24f395a3731010c8046cb2008c.DzX7lLL2_1EsNDw.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;随后我抱着好奇的心态想看看ESA防御咋样，没想到刚切过去阿里云就给我发消息了
+&lt;img src=&quot;https://2x.nz/_astro/9318872dc53b38334312619b2373c81e.C7NjFxlx_ZgbCYH.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;于是...
+&lt;img src=&quot;https://2x.nz/_astro/5b3bcf42d0e4f73fbe031699a291a5c2.DlByEAYQ_Z1e6gcD.webp&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://2x.nz/_astro/c4b6bdd2c39ae7585b9d3ecc5dbe9c6d.DQs9HFBU_24N2CD.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;依旧是熟悉的印度尼西亚
+&lt;img src=&quot;https://2x.nz/_astro/5a86eb051d48615259e8dcecb0fe8185.BRuLrf6x_1HVGmf.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;那没招了，随后我于10分钟内极速 &lt;strong&gt;完全切到Cloudflare Pages&lt;/strong&gt;
+&lt;img src=&quot;https://2x.nz/_astro/ddos-6t-3.slKOngr__2daK1q.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;目前来看 &lt;strong&gt;Cloudflare Pages&lt;/strong&gt; 也挺绿的
+&lt;img src=&quot;https://2x.nz/_astro/image_2025-12-16_08-24-54.BEtwrmBA_13RXPp.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;最后发了一个被打的B站视频，然后得知&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我去！大手子来了！&lt;/strong&gt;
+&lt;img src=&quot;https://2x.nz/_astro/Screenshot_2025-12-16-08-08-33-65_149003a2d400f6a.Bfql2rrl_Z2a8dxt.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;赛后总结&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://2x.nz/_astro/d16b7b134dec1224dcfc16e59a21942f.D_Y8WAub_Z2di0wA.webp&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://2x.nz/_astro/3c33b054a3180932ae87bea8bd06c3ed.DjKTmsFh_Z1fSFxy.webp&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本站遭受了建站以来规模最大的一次DDoS攻击，总流量6.65TB，峰值瞬发1.95GB/s&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;目前 &lt;strong&gt;acofork.com&lt;/strong&gt; 域名所有主要业务重定向为 &lt;strong&gt;2x.nz&lt;/strong&gt; ，所有业务采用 &lt;strong&gt;Cloudflare CDN&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果各位大牛有防御方案/缓解措施，欢迎留言！&lt;/p&gt;
 </content:encoded></item><item><title>想要一个匿名文件上载器？一行命令装好！</title><link>https://2x.nz/posts/py-uploadserver/</link><guid isPermaLink="true">https://2x.nz/posts/py-uploadserver/</guid><description>有时候我们可能出门在外想要带文件回家，但是U盘插来插去并不优雅，那么，我们可以尝试在自家电脑启动一个匿名文件上载器，然后将其暴露到公网！</description><pubDate>Thu, 11 Dec 2025 09:08:55 GMT</pubDate><content:encoded>&lt;h1&gt;安装&lt;/h1&gt;
 &lt;p&gt;确保你安装了 &lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;安装 &lt;strong&gt;uploadserver&lt;/strong&gt;&lt;/p&gt;
